@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 ''' Define a class Square. '''
+
+
 class Square:
     """Square class that calculates the area of
     a sqare, has a getter and setter method"""
@@ -8,17 +10,8 @@ class Square:
         self.__size = size
         self.__position = position
 
-
-    ''' Initialize an area of the Square method.
-    Args:
-        area: calculating the area of the size of Square.
-    '''
-    def area(self):
-        return self.__size ** 2
-
-
     """Initialize a new Square method.
-        
+
         Args:
             __size (int): The __size of the new square.
         """
@@ -46,25 +39,25 @@ class Square:
 
     @position.setter
     def position(self, value):
-        if ((len(value) != 2) or
-            (type(value) is not tuple) or
-            (type(value[0]) is not int) or (type(value[1]) is not int) or
-                (value[0] < 0) or (value[1] < 0)):
+        if (not isinstance(value, tuple) or
+                len(value) != 2 or
+                not all(isinstance(num, int) for num in value) or
+                not all(num >= 0 for num in value)):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
+    def area(self):
+        """Return the current area of the square."""
+        return self.__size ** 2
 
-    ''' Initialize a method that prints size of Square to stdout.'''
     def my_print(self):
+        """Print the square with the # character."""
         if self.__size == 0:
-            print()
-        else:
-            for i in range(self.__position[1]):
-                print()
-            for i in range(self.__size):
-                for j in range(self.__size + self.__position[0]):
-                    if j < self.__position[0]:
-                        print(" ", end='')
-                    else:
-                        print("#", end='')
-                print()
+            print("")
+            return
+
+        [print("") for i in range(0, self.__position[1])]
+        for i in range(0, self.__size):
+            [print(" ", end="") for j in range(0, self.__position[0])]
+            [print("#", end="") for k in range(0, self.__size)]
+            print("")
