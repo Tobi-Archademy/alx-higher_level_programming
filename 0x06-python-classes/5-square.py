@@ -1,14 +1,16 @@
 #!/usr/bin/python3
 ''' Define a class Square. '''
+
+
 class Square:
-    """Square class that calculates the area of
-    a sqare, has a getter and setter method"""
+    """Square class that calculates the area of a sqare,
+    has a getter and setter method"""
 
     def __init__(self, size=0):
         self.__size = size
 
     """Initialize a new Square method.
-        
+
         Args:
             __size (int): The __size of the new square.
         """
