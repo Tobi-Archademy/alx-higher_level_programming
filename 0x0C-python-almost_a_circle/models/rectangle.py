@@ -1,128 +1,130 @@
 #!/usr/bin/python3
-"""
-Defines a class rectangle
-"""
+""" rectangle module """
+
 from models.base import Base
 
+
 class Rectangle(Base):
-    """Representation of a rectangle that inherits from a base class"""
+    """ class Rectangle inherits from Base """
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Initialization"""
+        """ initializer """
         super().__init__(id)
-        """calling the id instance from the Base superclass"""
-
         self.width = width
         self.height = height
-        self.x =  x
+        self.x = x
         self.y = y
 
-
     def typeChecker(self, name, value):
-        """validates the type"""
+        """ integer validation check """
         if type(value) is not int:
             raise TypeError("{} must be an integer".format(name))
 
-    def value_Wid_Hei_Checker(self, name, value):
-        """checks the value of height and width"""
+    def valueWHChecker(self, name, value):
+        """ width and height validation check """
         if value <= 0:
-            raise ValueError("{}  must be > 0".format(name))
+            raise ValueError("{} must be > 0".format(name))
 
-
-    def value_X_Y_Checker(self, name, value):
-        """x and y value validation"""
+    def valueXYChecker(self, name, value):
+        """ x and y validation check """
         if value < 0:
             raise ValueError("{} must be >= 0".format(name))
 
     @property
     def width(self):
-        """getter width"""
-        self.__width
+        """ getter width """
+        return self.__width
 
     @width.setter
     def width(self, value):
-        """width setter, gets validated"""
+        """ width setter, gets validated """
         self.typeChecker("width", value)
-        self.value_Wid_Hei_Checker("width", value)
+        self.valueWHChecker("width", value)
         self.__width = value
 
     @property
     def height(self):
-        """getter height"""
-        self.__height
+        """ getter height """
+        return self.__height
 
     @height.setter
     def height(self, value):
-        """height setter, gets validated"""
+        """ height setter, gets validated """
         self.typeChecker("height", value)
-        self.value_Wid_Hei_Checker("height", value)
+        self.valueWHChecker("height", value)
         self.__height = value
 
     @property
     def x(self):
-        """getter x"""
-        self.__x
+        """ getter for x """
+        return self.__x
 
     @x.setter
     def x(self, value):
-        """x setter, gets validated"""
+        """ X setter, gets validated """
         self.typeChecker("x", value)
-        self.value_X_Y_Checker("x", value)
-        self.__x =  value
+        self.valueXYChecker("x", value)
+        self.__x = value
 
     @property
     def y(self):
-        """getter y"""
-        self.__y
+        """ getter for y """
+        return self.__y
 
     @y.setter
     def y(self, value):
-        """y setter, gets validated"""
+        """ Y setter, gets validated """
         self.typeChecker("y", value)
-        self.value_X_Y_Checker("y", value)
+        self.valueXYChecker("y", value)
         self.__y = value
 
-
     def area(self):
-        """calculates area of rectangle"""
-        return self.__width * self.__height
+        """ calcualtes the area """
+        return self.width * self.height
 
     def display(self):
-        """shows a display of #s """
-        print(("\n" * self.__y) + "\n".join(((" " * self.__x) + ("#" * self.__width)) for i in range(self.__height)))
-
+        """ shows a display of #s """
+        for i in range(self.y):
+            print()
+        for i in range(self.height):
+            for x in range(self.width + self.x):
+                if x >= self.x:
+                    print('#', end='')
+                else:
+                    print(' ', end='')
+            print()
 
     def __str__(self):
-        """informal string representation of the rectangle"""
-        return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(self.id, self.__x, self.__y, self.__width, self.__height)
-
+        """ overwrites the str """
+        return("[{}] ({}) {}/{} - {}/{}".format(
+            str(self.__class__.__name__), self.id, self.x,
+            self.y, self.width, self.height))
 
     def update(self, *args, **kwargs):
-        """updating arguments to the rectangle"""
+        """ the update function """
         if args is not None and len(args):
             for index, value in enumerate(args):
-                if index == 0:
+                if index is 0:
                     self.id = value
-                elif index == 1:
-                    self.__width = value
-                elif index == 2:
-                    self.__height = value
-                elif index == 3:
-                    self.__x = value
-                elif index == 4:
-                    self.__y = value
+                elif index is 1:
+                    self.width = value
+                elif index is 2:
+                    self.height = value
+                elif index is 3:
+                    self.x = value
+                elif index is 4:
+                    self.y = value
                 elif index >= 5:
-                    raise Exception("too many arguments")
+                    raise Exception("Too many arguments")
         else:
             for key in kwargs:
                 if key == "id":
                     self.id = kwargs["id"]
                 elif key == "width":
-                    self.__width = kwargs["width"]
+                    self.width = kwargs["width"]
                 elif key == "height":
-                    self.__height = kwargs["height"]
+                    self.height = kwargs["height"]
                 elif key == "x":
-                    self.__x = kwargs["x"]
+                    self.x = kwargs["x"]
                 elif key == "y":
-                    self.__y = kwargs["y"]
-
+                    self.y = kwargs["y"]
