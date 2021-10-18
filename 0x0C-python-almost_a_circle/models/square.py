@@ -32,7 +32,6 @@ class Square(Rectangle):
         self.valueWHChecker("height", value)
         self.height = value
 
-
     def update(self, *args, **kwargs):
         """updating arguments to the square"""
         if args is not None and len(args):
@@ -58,8 +57,6 @@ class Square(Rectangle):
                 elif key == "y":
                     self.y = kwargs["y"]
 
-
-
     def to_dictionary(self):
         """dictionary representation of class Square"""
         dic_sqr = {}
@@ -68,6 +65,4 @@ class Square(Rectangle):
         dic_sqr["size"] = self.size
         dic_sqr["x"] = self.x
         dic_sqr["y"] = self.y
-
         return dic_sqr
-                
