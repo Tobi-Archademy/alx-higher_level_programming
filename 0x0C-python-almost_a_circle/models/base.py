@@ -53,3 +53,27 @@ class Base:
         temp.update(**dictionary)
 
         return temp
+
+    @classmethod
+    def load_from_file(cls):
+        """ returns a list of instances """
+        temp = []
+        try:
+            with open("{}.json".format(
+                    cls.__name__), "r", encoding='utf-8') as f:
+                temp2 = cls.from_json_string(f.read())
+        except:
+            return []
+        for i in temp2:
+            temp.append(cls.create(**i))
+        return temp
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """ lol i didnt do dis """
+        pass
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ I dont like unit tests"""
+        pass
