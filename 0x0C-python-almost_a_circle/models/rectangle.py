@@ -129,11 +129,10 @@ class Rectangle(Base):
                 elif key == "y":
                     self.y = kwargs["y"]
 
-
     def to_dictionary(self):
         """dictionary representation of a rectangle"""
         dic = {}
-        
+
         dic["id"] = self.id
         dic["width"] = self.width
         dic["height"] = self.height
