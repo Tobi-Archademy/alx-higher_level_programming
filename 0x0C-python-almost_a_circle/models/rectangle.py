@@ -18,6 +18,22 @@ class Rectangle(Base):
         self.y = y
 
 
+    def typeChecker(self, name, value):
+        """validates the type"""
+        if type(value) is not int:
+            raise TypeError("{} must be an integer".format(name))
+
+    def value_Wid_Hei_Checker(self, name, value):
+        """checks the value of height and width"""
+        if value <= 0:
+            raise ValueError("{}  must be > 0".format(name))
+
+
+    def value_X_Y_Checker(self, name, value):
+        """x and y value validation"""
+        if value < 0:
+            raise ValueError("{} must be >= 0".format(name))
+
     @property
     def width(self):
         """getter width"""
@@ -26,10 +42,8 @@ class Rectangle(Base):
     @width.setter
     def width(self, value):
         """width setter, gets validated"""
-        if type(value) is not int:
-            raise TypeError("width must be  an integer")
-        if  value <= 0:
-            raise ValueError("width must be > 0")
+        self.typeChecker("width", value)
+        self.value_Wid_Hei_Checker("width", value)
         self.__width = value
 
     @property
@@ -40,10 +54,8 @@ class Rectangle(Base):
     @height.setter
     def height(self, value):
         """height setter, gets validated"""
-        if type(value) is not int:
-            raise TypeError("height must be an integer")
-        if  value <= 0:
-            raise ValueError("height must be > 0")
+        self.typeChecker("height", value)
+        self.value_Wid_Hei_Checker("height", value)
         self.__height = value
 
     @property
@@ -54,10 +66,8 @@ class Rectangle(Base):
     @x.setter
     def x(self, value):
         """x setter, gets validated"""
-        if type(value) is not int:
-            raise TypeError("x must be an integer")
-        if  value < 0:
-            raise ValueError("x must be >= 0")
+        self.typeChecker("x", value)
+        self.value_X_Y_Checker("x", value)
         self.__x =  value
 
     @property
@@ -68,8 +78,15 @@ class Rectangle(Base):
     @y.setter
     def y(self, value):
         """y setter, gets validated"""
-        if type(value) is not int:
-            raise TypeError("y must be an integer")
-        if  value < 0:
-            raise ValueError("y must be >= 0")
+        self.typeChecker("y", value)
+        self.value_X_Y_Checker("y", value)
         self.__y = value
+
+
+    def area(self):
+        """calculates area of rectangle"""
+        return self.__width * self.__height
+
+    def display(self):
+        """shows a display of #s """
+        print("\n".join(("#" * self.__width) for i in range(self.__height)))
