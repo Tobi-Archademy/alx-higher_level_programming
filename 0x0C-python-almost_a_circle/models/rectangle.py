@@ -97,8 +97,8 @@ class Rectangle(Base):
         return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(self.id, self.__x, self.__y, self.__width, self.__height)
 
 
-    def update(self, *args):
-        """passing non-keyworded arguments to the rectangle"""
+    def update(self, *args, **kwargs):
+        """updating arguments to the rectangle"""
         if args is not None and len(args):
             for index, value in enumerate(args):
                 if index == 0:
@@ -111,6 +111,18 @@ class Rectangle(Base):
                     self.__x = value
                 elif index == 4:
                     self.__y = value
-                else:
+                elif index >= 5:
                     raise Exception("too many arguments")
-            
+        else:
+            for key in kwargs:
+                if key == "id":
+                    self.id = kwargs["id"]
+                elif key == "width":
+                    self.__width = kwargs["width"]
+                elif key == "height":
+                    self.__height = kwargs["height"]
+                elif key == "x":
+                    self.__x = kwargs["x"]
+                elif key == "y":
+                    self.__y = kwargs["y"]
+
