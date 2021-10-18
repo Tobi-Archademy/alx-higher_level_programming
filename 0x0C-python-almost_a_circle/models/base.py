@@ -8,6 +8,7 @@ import turtle
 import time
 import csv
 
+
 class Base:
     """Representation of a base"""
     __nb_objects = 0
