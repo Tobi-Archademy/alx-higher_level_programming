@@ -57,3 +57,17 @@ class Square(Rectangle):
                     self.x = kwargs["x"]
                 elif key == "y":
                     self.y = kwargs["y"]
+
+
+
+    def to_dictionary(self):
+        """dictionary representation of class Square"""
+        dic_sqr = {}
+
+        dic_sqr["id"] = self.id
+        dic_sqr["size"] = self.size
+        dic_sqr["x"] = self.x
+        dic_sqr["y"] = self.y
+
+        return dic_sqr
+                
