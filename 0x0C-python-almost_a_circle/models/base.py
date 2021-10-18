@@ -42,3 +42,14 @@ class Base:
                 lo.append(cls.to_dictionary(i))
         with open(filename, 'w') as f:
             f.write(cls.to_json_string(lo))
+
+    @classmethod
+    def create(cls, **dictionary):
+        """ returns an instance with all attributes of the dict """
+        if cls.__name__ == "Rectangle":
+            temp = cls(width=6, height=9)
+        if cls.__name__ == "Square":
+            temp = cls(size=69)
+        temp.update(**dictionary)
+
+        return temp
