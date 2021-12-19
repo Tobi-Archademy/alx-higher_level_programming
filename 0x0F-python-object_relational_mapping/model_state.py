@@ -1,4 +1,17 @@
--- Create database hbtn_0e_6_usa
-CREATE DATABASE IF NOT EXISTS hbtn_0e_6_usa;
-USE hbtn_0e_6_usa;
-SHOW CREATE TABLE states;
+#!/usr/bin/python3
+"""
+contains the class definition of a State and an instance Base
+"""
+
+import sqlalchemy
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+
+class State(Base):
+    """Representation of a state"""
+    __tablename__ = 'states'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(128), nullable=False)
